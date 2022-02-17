@@ -15,6 +15,7 @@ public class PlayerRaycast : MonoBehaviour
 
     private void Awake()
     {
+        RenderSettings.skybox.SetFloat("_Exposure", 0);
         inventory.GetComponent<Inventory>();
     }
     private void Update()

@@ -7,10 +7,9 @@ public class Openable : MonoBehaviour
     private Animator animator;
     private bool isOpen;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
-        isOpen = false;
     }
     public virtual void OpenClose()
     {

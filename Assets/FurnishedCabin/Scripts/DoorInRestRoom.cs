@@ -1,42 +1,36 @@
 using Lean.Gui;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorInRestRoom : Openable
 {
+    [SerializeField] private Inventory inventory;
     private bool restRoomDoorIsUnlocked;
-    private LeanToggle openingscript;
 
-    private void Awake()
+    protected override void Awake()
     {
-        restRoomDoorIsUnlocked = true;
-        openingscript = GetComponent<LeanToggle>();
+        base.Awake();
+        inventory = inventory.GetComponent<Inventory>();
     }
-    private void Start()
+
+    public override void OpenClose()
     {
-        //GlobalEventManager.OnRedKeyPickup += UnlockingDoor;
-        openingscript.enabled = false;
+        if (restRoomDoorIsUnlocked)
+        {
+            base.OpenClose();
+        }
+        
     }
 
     private void Update()
     {
-        
+        if (inventory.inventoryContent.ContainsKey("Redkey") && restRoomDoorIsUnlocked == false)
+        {
+            UnlockingDoor();
+        }
     }
-    //public override void OpenClose()
-    //{
-    //    if (restRoomDoorIsUnlocked)
-    //    {
-    //        base.OpenClose();
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Door is locked");
-    //    }
-    //}
+
     private void UnlockingDoor()
     {
         restRoomDoorIsUnlocked = true;
-        openingscript.enabled = true;
     }
 }

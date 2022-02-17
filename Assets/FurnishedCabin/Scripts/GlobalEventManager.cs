@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public static class GlobalEventManager
 {
-    public static UnityEvent<Pickups> OnItemPickup = new UnityEvent<Pickups>();
+    public static Action<Pickups> OnItemPickup;
 
     public static void TriggerOnItemPickup(Pickups pickup)
     {

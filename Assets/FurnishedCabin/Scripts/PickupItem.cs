@@ -10,9 +10,9 @@ public class PickupItem : MonoBehaviour
     [SerializeField] private Pickups pickup;
     public void Pickup()
     {
-        Destroy(gameObject);
-        GlobalEventManager.TriggerOnItemPickup(pickup);
         
+        GlobalEventManager.TriggerOnItemPickup(pickup);
+        Destroy(gameObject);
     }
 
 }

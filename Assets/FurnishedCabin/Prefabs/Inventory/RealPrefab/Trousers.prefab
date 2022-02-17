@@ -63,9 +63,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2077653634926292596, guid: cd08f50b03394e44898424407b68f5dd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cd08f50b03394e44898424407b68f5dd, type: 3}
       propertyPath: m_Name
       value: Trousers
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd08f50b03394e44898424407b68f5dd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cd08f50b03394e44898424407b68f5dd, type: 3}
+      propertyPath: m_TagString
+      value: Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223912473497933328, guid: cd08f50b03394e44898424407b68f5dd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939325005702645192, guid: cd08f50b03394e44898424407b68f5dd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7066628371689257331, guid: cd08f50b03394e44898424407b68f5dd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622462153640451935, guid: cd08f50b03394e44898424407b68f5dd, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9197547316852678733, guid: cd08f50b03394e44898424407b68f5dd, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd08f50b03394e44898424407b68f5dd, type: 3}

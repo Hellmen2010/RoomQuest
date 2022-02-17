@@ -9,15 +9,20 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] GameObject inventorySlotPrefab;
     [SerializeField] GameObject parentForInventorySlot;
-    public Dictionary<string,GameObject> inventoryContent;
     [SerializeField] InventoryImage inventoryImage;
+    public Dictionary<string,GameObject> inventoryContent = new Dictionary<string, GameObject>();
     private void Awake()
     {
-        GlobalEventManager.OnItemPickup.AddListener(AddItem);
+        GlobalEventManager.OnItemPickup += AddItem;
     }
     public void AddItem(Pickups pickup)
     {
-        Instantiate(inventorySlotPrefab, parentForInventorySlot.transform);
-        inventorySlotPrefab.GetComponent<Image>().sprite = inventoryImage.GetItemByType(pickup);
+        GameObject inventorySlot = Instantiate(inventorySlotPrefab, parentForInventorySlot.transform);
+        inventorySlot.GetComponentInChildren<Image>().sprite = inventoryImage.GetItemByType(pickup);
+        inventoryContent.Add(pickup.ToString(), inventorySlotPrefab);
+    }
+    private void OnDestroy()
+    {
+        GlobalEventManager.OnItemPickup -= AddItem;
     }
 }

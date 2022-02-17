@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Audio;
 
+[RequireComponent(typeof(AudioSource))]
 public class Laptop : MonoBehaviour
 {
     [SerializeField] private GameObject player;
@@ -11,6 +13,13 @@ public class Laptop : MonoBehaviour
     [SerializeField] private TMP_InputField password;
     [SerializeField] private GameObject desktopPanel;
     [SerializeField] private GameObject errorPanel;
+    [SerializeField] private AudioStore audioStore;
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -34,6 +43,7 @@ public class Laptop : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.E))
         {
+            audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.Pc_on));
             mainCamera.SetActive(false);
             laptopCamera.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
@@ -42,6 +52,7 @@ public class Laptop : MonoBehaviour
     }
     public void LaptopDeactivating()
     {
+        audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.Pc_off));
         mainCamera.SetActive(true);
         laptopCamera.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;

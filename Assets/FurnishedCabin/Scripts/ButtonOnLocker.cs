@@ -1,20 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class ButtonOnLocker : MonoBehaviour
 {
-    [SerializeField] private Locker locker;
-    private TMP_Text text;
+    private Locker _locker;
+    private Locker locker => _locker is null ? _locker = FindObjectOfType<Locker>() : _locker;
 
-    private void Awake()
-    {
-        locker.GetComponent<Locker>();
-    }
-    public void OnButtonPressed()
-    {
-        locker.inputPassword += GetComponentInChildren<TMP_Text>().text;
-        Debug.Log(GetComponentInChildren<TMP_Text>().text);
-    }
+    private Button _button;
+    private Button button => _button is null ? _button = GetComponent<Button>() : _button;
+
+    public void OnButtonPressed() => locker.PlayerInput(button);
 }

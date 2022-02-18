@@ -17,6 +17,7 @@ public class PlayerRaycast : MonoBehaviour
     private void Awake()
     {
         inventory.GetComponent<Inventory>();
+        StartCoroutine(DayNight());
     }
 
     private IEnumerator DayNight()
@@ -25,16 +26,15 @@ public class PlayerRaycast : MonoBehaviour
         {
             skyboxExposure -= 0.001f;
             RenderSettings.skybox.SetFloat("_Exposure", skyboxExposure);
-            yield return new WaitForSeconds(300); 
+            yield return new WaitForSeconds(1); 
         }
     }
     private void Update()
-    {
-        StartCoroutine(DayNight());
+    { 
         ShowInventory();
         if (isPressed)
         {
-            Ray ray = new Ray(transform.position, transform.forward);
+            Ray ray = Cursor.lockState == CursorLockMode.Locked ? new Ray(transform.position,  transform.forward) : mainCamera.ScreenPointToRay(Input.mousePosition);
 
             Debug.DrawLine(ray.origin, hit.point, Color.magenta, 1);
 

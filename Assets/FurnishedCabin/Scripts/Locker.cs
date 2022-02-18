@@ -1,81 +1,75 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Locker : Openable
 {
-    [SerializeField] private GameObject player;
+    [SerializeField] private FirstPersonController player;
     [SerializeField] private GameObject lockerCamera;
-    //[SerializeField] private TMP_InputField password;
-    //[SerializeField] private AudioStore audioStore;
-    private AudioSource audioSource;
-    private bool lockerUnlocked;
-    private string password;
-    public string inputPassword;
+    [SerializeField] private AudioSource Sound_Unlock, Sound_Reset, Sound_Input;
+    [SerializeField] private string password = "6384", inputPassword = string.Empty;
+    private bool lockerUnlocked = false;
+    public UnityEvent onUnlock;
 
-    protected override void Awake()
+    private bool _isFocused = false;
+    public bool isFocused
     {
-        base.Awake();
-        audioSource = GetComponent<AudioSource>();
-        inputPassword = "";
-        password = "6384";
-    }
-    private void Update()
-    {
-        if (inputPassword.Length > 4)
-            clearPasswordField();
-        if(inputPassword == password)
+        get => _isFocused;
+        set 
         {
-            UnlockingLocker();
-            clearPasswordField();
+            lockerCamera.SetActive(value);
+            player.GetComponent<FirstPersonController>().enabled = !value;
+            Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+            PasswordInput_Clear();
+            _isFocused = value;
         }
-        Debug.Log(inputPassword);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyUp(KeyCode.E))
-            LockerTryPasswordCamera();
-        if (Input.GetKeyUp(KeyCode.Escape))
-            LockerTryPasswordCameraExit();
-    }
-    public void LockerTryPasswordCamera()
-    {
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            //audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.Pc_on));
-            lockerCamera.SetActive(true);
-            Cursor.lockState = CursorLockMode.Confined;
-            player.GetComponent<FirstPersonController>().enabled = false;
-        }
-    }
-    public void LockerTryPasswordCameraExit()
-    {
-        //audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.Pc_off));
-        clearPasswordField();
-        lockerCamera.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        player.GetComponent<FirstPersonController>().enabled = true;
+        if (Input.GetKeyUp(KeyCode.E) && !lockerUnlocked) isFocused = !isFocused;
+        if (Input.GetKeyUp(KeyCode.Escape)) isFocused = false;
     }
 
     public override void OpenClose()
     {
-        if (lockerUnlocked)
-        {
+        if (lockerUnlocked) {
+            isFocused = false;
             base.OpenClose();
         }
-        else
-        {
-            Debug.Log("Door is locked");
-        }
     }
-    private void UnlockingLocker()
-    {
-        lockerUnlocked = true;
-    }
-    private void clearPasswordField()
+
+    public void PasswordInput_Clear(bool playSound, AudioSource source)
     {
         inputPassword = string.Empty;
+        if (playSound) source.Play();
+    }
+    public void PasswordInput_Clear(bool playSound = false) => PasswordInput_Clear(playSound, Sound_Reset);
+
+    public void PlayerInput(Button input)
+    {
+        var inputNumber = input.GetComponentInChildren<TMP_Text>();
+        if (inputNumber is null) throw new NullReferenceException();
+        if (inputNumber.text.Length == 1) TryInput(inputNumber.text[0]);
+    }
+
+    private void TryInput(char symbol)
+    {
+
+        if (inputPassword + symbol == password) { 
+            onUnlock.Invoke(); // add anim to inspector
+            PasswordInput_Clear(true, Sound_Unlock);
+            lockerUnlocked = true;
+        }
+        else if (inputPassword.Length + 1 == password.Length) {
+            PasswordInput_Clear(true, Sound_Reset);
+        } 
+        else
+        {
+            inputPassword += symbol;
+            Sound_Input.Play(); //при простом вводе
+        }
     }
 }

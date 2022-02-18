@@ -5,7 +5,7 @@ using UnityEngine;
 public class Openable : MonoBehaviour
 {
     private Animator animator;
-    private bool isOpen;
+    private bool isOpen = false;
 
     protected virtual void Awake()
     {
@@ -13,15 +13,7 @@ public class Openable : MonoBehaviour
     }
     public virtual void OpenClose()
     {
-        if (isOpen)
-        {
-            animator.SetBool("is_open", isOpen);
-            isOpen = false;
-        }
-        else
-        {
-            animator.SetBool("is_open", isOpen);
-            isOpen = true;
-        }
+        animator.SetBool("is_open", !isOpen);
+        isOpen = !isOpen;
     }
 }

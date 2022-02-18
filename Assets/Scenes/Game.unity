@@ -320,8 +320,9 @@ GameObject:
   - component: {fileID: 30848345}
   - component: {fileID: 30848344}
   - component: {fileID: 30848343}
+  - component: {fileID: 30848346}
   m_Layer: 0
-  m_Name: Button (2)
+  m_Name: Button3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,7 +392,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 30848344}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 30848346}
+        m_TargetAssemblyTypeName: ButtonOnLocker, Assembly-CSharp
+        m_MethodName: OnButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &30848344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +443,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30848341}
   m_CullTransparentMesh: 1
+--- !u!114 &30848346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30848341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c9dd4a12e0f394d93f00ebde5a46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 95000011334996827}
 --- !u!1 &32337982
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,8 +1018,9 @@ GameObject:
   - component: {fileID: 121696434}
   - component: {fileID: 121696433}
   - component: {fileID: 121696432}
+  - component: {fileID: 121696435}
   m_Layer: 0
-  m_Name: Button (4)
+  m_Name: Button5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1063,7 +1090,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 121696433}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 121696435}
+        m_TargetAssemblyTypeName: ButtonOnLocker, Assembly-CSharp
+        m_MethodName: OnButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &121696433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,6 +1141,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121696430}
   m_CullTransparentMesh: 1
+--- !u!114 &121696435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121696430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c9dd4a12e0f394d93f00ebde5a46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 95000011334996827}
 --- !u!1001 &185553018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1371,12 +1423,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: fov
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: sprintFOV
+      value: 91.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: walkSpeed
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: enableZoom
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: sprintSpeed
@@ -1395,12 +1455,20 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 631658678}
+    - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: useSprintBar
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: enableHeadBob
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4459864850019384740, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+      propertyPath: mouseSensitivity
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4459864850019384750, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
       propertyPath: m_Name
@@ -1560,6 +1628,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4459864851310106427, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
+    - {fileID: 4459864851310106426, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6bacecc4f3df9584198879c73a6b6c36, type: 3}
 --- !u!1 &227757393
 GameObject:
@@ -3291,8 +3360,9 @@ GameObject:
   - component: {fileID: 487953716}
   - component: {fileID: 487953715}
   - component: {fileID: 487953714}
+  - component: {fileID: 487953717}
   m_Layer: 0
-  m_Name: Button (5)
+  m_Name: Button6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3362,7 +3432,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 487953715}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 487953717}
+        m_TargetAssemblyTypeName: ButtonOnLocker, Assembly-CSharp
+        m_MethodName: OnButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &487953715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3401,6 +3483,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487953712}
   m_CullTransparentMesh: 1
+--- !u!114 &487953717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487953712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c9dd4a12e0f394d93f00ebde5a46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 95000011334996827}
 --- !u!4 &501286235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011853778598, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
@@ -3553,8 +3648,9 @@ GameObject:
   - component: {fileID: 554583695}
   - component: {fileID: 554583694}
   - component: {fileID: 554583693}
+  - component: {fileID: 554583696}
   m_Layer: 0
-  m_Name: Button (8)
+  m_Name: Button9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3624,7 +3720,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 554583694}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 554583696}
+        m_TargetAssemblyTypeName: ButtonOnLocker, Assembly-CSharp
+        m_MethodName: OnButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &554583694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3663,6 +3771,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554583691}
   m_CullTransparentMesh: 1
+--- !u!114 &554583696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554583691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c9dd4a12e0f394d93f00ebde5a46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 95000011334996827}
 --- !u!1 &570761688
 GameObject:
   m_ObjectHideFlags: 0
@@ -5421,13 +5542,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976160582}
-  m_LocalRotation: {x: 0.00021152568, y: -0.9994292, z: 0.03317544, w: 0.006372421}
-  m_LocalPosition: {x: 0.09, y: 1.01, z: 1.71}
-  m_LocalScale: {x: 1.9999713, y: 1.8009441, z: 1.1541933}
+  m_LocalRotation: {x: -0.03317542, y: -0.006372421, z: 0.00021152568, w: -0.9994292}
+  m_LocalPosition: {x: -0.017122211, y: 0.08588181, z: -1.316212}
+  m_LocalScale: {x: 1.0081831, y: 0.8774023, z: 1.1378227}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 958855355}
-  m_Father: {fileID: 4000013775267602}
+  m_Father: {fileID: 1652030303}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 19.381, y: -181.708, z: -0.642}
 --- !u!114 &976160584
@@ -5489,6 +5610,7 @@ GameObject:
   - component: {fileID: 1012586495}
   - component: {fileID: 1012586502}
   - component: {fileID: 1012586503}
+  - component: {fileID: 1012586504}
   m_Layer: 8
   m_Name: DoorRestRoom
   m_TagString: Untagged
@@ -5617,6 +5739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 401062258}
+  audioStore: {fileID: 11400000, guid: 6efe4a6fcc684044aa45e30eedf238c1, type: 2}
 --- !u!95 &1012586503
 Animator:
   serializedVersion: 4
@@ -5637,6 +5760,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!82 &1012586504
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012586492}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 269f977dd8203694eb8b8de4b81a3b9a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &1020305064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011258951830, guid: 23d25b2e2d4364dd4b92c52ef40cd36e, type: 3}
@@ -8100,8 +8319,9 @@ GameObject:
   - component: {fileID: 1371997696}
   - component: {fileID: 1371997695}
   - component: {fileID: 1371997694}
+  - component: {fileID: 1371997697}
   m_Layer: 0
-  m_Name: Button (6)
+  m_Name: Button7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8171,7 +8391,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1371997695}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1371997697}
+        m_TargetAssemblyTypeName: ButtonOnLocker, Assembly-CSharp
+        m_MethodName: OnButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1371997695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8210,6 +8442,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371997692}
   m_CullTransparentMesh: 1
+--- !u!114 &1371997697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371997692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c9dd4a12e0f394d93f00ebde5a46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 95000011334996827}
 --- !u!1 &1381229351
 GameObject:
   m_ObjectHideFlags: 0
@@ -9247,8 +9492,9 @@ GameObject:
   - component: {fileID: 1562346693}
   - component: {fileID: 1562346692}
   - component: {fileID: 1562346691}
+  - component: {fileID: 1562346694}
   m_Layer: 0
-  m_Name: Button (1)
+  m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9318,7 +9564,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1562346692}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1562346694}
+        m_TargetAssemblyTypeName: ButtonOnLocker, Assembly-CSharp
+        m_MethodName: OnButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1562346692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9357,6 +9615,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562346689}
   m_CullTransparentMesh: 1
+--- !u!114 &1562346694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562346689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c9dd4a12e0f394d93f00ebde5a46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 95000011334996827}
 --- !u!1 &1570559768
 GameObject:
   m_ObjectHideFlags: 0
@@ -9472,8 +9743,9 @@ GameObject:
   - component: {fileID: 1614522804}
   - component: {fileID: 1614522803}
   - component: {fileID: 1614522802}
+  - component: {fileID: 1614522805}
   m_Layer: 0
-  m_Name: Button (7)
+  m_Name: Button8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9543,7 +9815,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1614522803}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1614522805}
+        m_TargetAssemblyTypeName: ButtonOnLocker, Assembly-CSharp
+        m_MethodName: OnButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1614522803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9582,6 +9866,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1614522800}
   m_CullTransparentMesh: 1
+--- !u!114 &1614522805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614522800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c9dd4a12e0f394d93f00ebde5a46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 95000011334996827}
 --- !u!1 &1622193832
 GameObject:
   m_ObjectHideFlags: 0
@@ -9594,8 +9891,9 @@ GameObject:
   - component: {fileID: 1622193836}
   - component: {fileID: 1622193835}
   - component: {fileID: 1622193834}
+  - component: {fileID: 1622193837}
   m_Layer: 0
-  m_Name: Button (3)
+  m_Name: Button4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9665,7 +9963,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1622193835}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1622193837}
+        m_TargetAssemblyTypeName: ButtonOnLocker, Assembly-CSharp
+        m_MethodName: OnButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1622193835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9704,6 +10014,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622193832}
   m_CullTransparentMesh: 1
+--- !u!114 &1622193837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622193832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c9dd4a12e0f394d93f00ebde5a46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 95000011334996827}
 --- !u!1 &1652030302
 GameObject:
   m_ObjectHideFlags: 0
@@ -9737,6 +10060,7 @@ RectTransform:
   m_Children:
   - {fileID: 444867180}
   - {fileID: 469516187}
+  - {fileID: 976160583}
   m_Father: {fileID: 1542117257}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -9795,7 +10119,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 456941991}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -11242,8 +11566,9 @@ GameObject:
   - component: {fileID: 2002313149}
   - component: {fileID: 2002313148}
   - component: {fileID: 2002313147}
+  - component: {fileID: 2002313150}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11314,13 +11639,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2002313145}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2002313150}
+        m_TargetAssemblyTypeName: ButtonOnLocker, Assembly-CSharp
+        m_MethodName: OnButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11364,6 +11689,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2002313145}
   m_CullTransparentMesh: 1
+--- !u!114 &2002313150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002313145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c9dd4a12e0f394d93f00ebde5a46fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locker: {fileID: 95000011334996827}
 --- !u!1 &2027097368
 GameObject:
   m_ObjectHideFlags: 0
@@ -12681,7 +13019,6 @@ Transform:
   m_Children:
   - {fileID: 4000013526604570}
   - {fileID: 362433408}
-  - {fileID: 976160583}
   m_Father: {fileID: 276718235}
   m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -12759,8 +13096,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9793859, y: 1.478216, z: 1.318342}
-  m_Center: {x: 0.16366339, y: 0.83410805, z: 0.32417083}
+  m_Size: {x: 2.1275854, y: 1.478216, z: 1.6269658}
+  m_Center: {x: 0.23776317, y: 0.83410805, z: 0.47848278}
 --- !u!95 &95000011334996826
 Animator:
   serializedVersion: 4
@@ -12794,5 +13131,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1193450526}
-  mainCamera: {fileID: 631658673}
   lockerCamera: {fileID: 976160582}
+  inputPassword: 

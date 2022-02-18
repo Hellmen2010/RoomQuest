@@ -19,7 +19,7 @@ public class Inventory : MonoBehaviour
     {
         GameObject inventorySlot = Instantiate(inventorySlotPrefab, parentForInventorySlot.transform);
         inventorySlot.GetComponentInChildren<Image>().sprite = inventoryImage.GetItemByType(pickup);
-        inventoryContent.Add(pickup.ToString(), inventorySlotPrefab);
+        inventoryContent.Add(pickup.ToString(), inventorySlot);
     }
     private void OnDestroy()
     {

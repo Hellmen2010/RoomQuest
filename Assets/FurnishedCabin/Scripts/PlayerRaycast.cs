@@ -9,17 +9,28 @@ public class PlayerRaycast : MonoBehaviour
     [SerializeField] private GameObject inventory;
     private bool isPressed => (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0));
     private RaycastHit hit;
+    private float skyboxExposure = 1f;
 
     private Camera _mainCamera;
     private Camera mainCamera => _mainCamera is null ? _mainCamera = Camera.main ?? throw new MissingComponentException() : _mainCamera;
 
     private void Awake()
     {
-        RenderSettings.skybox.SetFloat("_Exposure", 0);
         inventory.GetComponent<Inventory>();
+    }
+
+    private IEnumerator DayNight()
+    {
+        while(skyboxExposure > 0.12f)
+        {
+            skyboxExposure -= 0.001f;
+            RenderSettings.skybox.SetFloat("_Exposure", skyboxExposure);
+            yield return new WaitForSeconds(300); 
+        }
     }
     private void Update()
     {
+        StartCoroutine(DayNight());
         ShowInventory();
         if (isPressed)
         {

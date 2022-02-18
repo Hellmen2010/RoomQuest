@@ -6,20 +6,31 @@ using UnityEngine;
 public class Locker : Openable
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject lockerCamera;
     //[SerializeField] private TMP_InputField password;
     //[SerializeField] private AudioStore audioStore;
     private AudioSource audioSource;
     private bool lockerUnlocked;
+    private string password;
+    public string inputPassword;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         audioSource = GetComponent<AudioSource>();
+        inputPassword = "";
+        password = "6384";
     }
     private void Update()
     {
-        
+        if (inputPassword.Length > 4)
+            clearPasswordField();
+        if(inputPassword == password)
+        {
+            UnlockingLocker();
+            clearPasswordField();
+        }
+        Debug.Log(inputPassword);
     }
 
     private void OnTriggerStay(Collider other)
@@ -34,7 +45,6 @@ public class Locker : Openable
         if (Input.GetKeyUp(KeyCode.E))
         {
             //audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.Pc_on));
-            mainCamera.SetActive(false);
             lockerCamera.SetActive(true);
             Cursor.lockState = CursorLockMode.Confined;
             player.GetComponent<FirstPersonController>().enabled = false;
@@ -43,7 +53,7 @@ public class Locker : Openable
     public void LockerTryPasswordCameraExit()
     {
         //audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.Pc_off));
-        mainCamera.SetActive(true);
+        clearPasswordField();
         lockerCamera.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         player.GetComponent<FirstPersonController>().enabled = true;
@@ -59,5 +69,13 @@ public class Locker : Openable
         {
             Debug.Log("Door is locked");
         }
+    }
+    private void UnlockingLocker()
+    {
+        lockerUnlocked = true;
+    }
+    private void clearPasswordField()
+    {
+        inputPassword = string.Empty;
     }
 }

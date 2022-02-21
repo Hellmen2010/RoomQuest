@@ -19,9 +19,6 @@ public class DoorInBathroom : Openable
         if (doorInBathroomIsOpen)
         {
             base.OpenClose();
-            closeIndicator.active = !closeIndicator.active;
-            openIndicator.active = !openIndicator.active;
-            
         }
         else
         {
@@ -33,5 +30,7 @@ public class DoorInBathroom : Openable
     {
         doorInBathroomIsOpen = true;
         audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.ElectroDoor));
+        closeIndicator.active = !closeIndicator.active;
+        openIndicator.active = !openIndicator.active;
     }
 }

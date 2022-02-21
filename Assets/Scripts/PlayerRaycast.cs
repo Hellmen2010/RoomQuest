@@ -7,6 +7,7 @@ public class PlayerRaycast : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject inventory;
+    [SerializeField] private GameObject questPanel;
     private bool isPressed => (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0));
     private RaycastHit hit;
     private float skyboxExposure = 1f;
@@ -32,6 +33,7 @@ public class PlayerRaycast : MonoBehaviour
     private void Update()
     { 
         ShowInventory();
+        ShowQuests();
         if (isPressed)
         {
             Ray ray = Cursor.lockState == CursorLockMode.Locked ? new Ray(transform.position,  transform.forward) : mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -73,5 +75,10 @@ public class PlayerRaycast : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I))
             inventory.active = !inventory.active;
+    }
+    void ShowQuests()
+    {
+        if(Input.GetKeyDown(KeyCode.Q))
+            questPanel.active = !questPanel.active;
     }
 }

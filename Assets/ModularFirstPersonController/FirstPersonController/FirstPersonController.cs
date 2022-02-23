@@ -7,18 +7,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 using UnityEngine.UI;
 
 #if UNITY_EDITOR
     using UnityEditor;
     using System.Net;
-using Cinemachine;
 #endif
 
 public class FirstPersonController : MonoBehaviour
 {
     private Rigidbody rb;
-
 
     #region Camera Movement Variables
 
@@ -135,6 +134,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Awake()
     {
+
         rb = GetComponent<Rigidbody>();
 
         crosshairObject = GetComponentInChildren<Image>();
@@ -153,7 +153,8 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
-        if(lockCursor)
+        
+        if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }

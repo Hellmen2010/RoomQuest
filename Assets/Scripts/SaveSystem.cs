@@ -41,12 +41,33 @@ public class RoomObjectSave
     }
 }
 
+[Serializable]
+public class DayTimeSave
+{
+    public float skyboxExposure;
+
+    public DayTimeSave(DayTimeController dayTimeController)
+    {
+        skyboxExposure = dayTimeController.SkyboxExposure;
+    }
+}
+
 public class SaveSystem : MonoBehaviour
 {
     [SerializeField] private string saveFilename = "save.txt";
     [SerializeField] private ObjectSpawner objectSpawner;
+    [SerializeField] private DayTimeController dayTimeController;
     [SerializeField] private PlayerRaycast player;
     [SerializeField] private Openable[] openableObjects;
+
+    public bool HasSave
+    {
+        get
+        {
+            string filepath = Path.Combine(Application.persistentDataPath, saveFilename);
+            return File.Exists(filepath);
+        }
+    }
 
     public void Save()
     {
@@ -55,30 +76,21 @@ public class SaveSystem : MonoBehaviour
         RoomObjectSave[] roomObjectSaves = new RoomObjectSave[openableObjects.Length];
         for (int i = 0; i < openableObjects.Length; i++)
             roomObjectSaves[i] = new RoomObjectSave(openableObjects[i]);
-        string objectsInfoJSON = JsonUtility.ToJson(roomObjectSaves);
+        string objectsInfoJSON = roomObjectSaves.ConvertArrayToString();
+        DayTimeSave dayTimeSave = new DayTimeSave(dayTimeController);
+        string dayTimeSaveJSON = JsonUtility.ToJson(dayTimeSave);
         string filepath = Path.Combine(Application.persistentDataPath, saveFilename);
         using (StreamWriter sw = new StreamWriter(filepath))
         {
             sw.WriteLine(playerInfoJSON);
             sw.WriteLine(objectsInfoJSON);
+            sw.WriteLine(dayTimeSaveJSON);
         }
+        print("Game saved");
     }
 
     public void Load()
     {
-        string playerInfoJSON;
-        string objectsInfoJSON;
-        string filepath = Path.Combine(Application.persistentDataPath, saveFilename);
-        using (StreamReader sr = new StreamReader(filepath))
-        {
-            playerInfoJSON = sr.ReadLine();
-            objectsInfoJSON = sr.ReadLine();
-        }
-        PlayerSave playerSave = JsonUtility.FromJson<PlayerSave>(playerInfoJSON);
-        RoomObjectSave[] roomObjectSaves = JsonUtility.FromJson<RoomObjectSave[]>(objectsInfoJSON);
-        player.SetPlayerFromSave(playerSave);
-        for (int i = 0; i < openableObjects.Length; i++)
-            openableObjects[i].SetObjectFromSave(roomObjectSaves[i]);
         IEnumerable<PickableObjectType> objectsToSpawn = new PickableObjectType[]
         {
             PickableObjectType.Trousers,
@@ -86,7 +98,35 @@ public class SaveSystem : MonoBehaviour
             PickableObjectType.TShirt,
             PickableObjectType.Redkey,
             PickableObjectType.Jacket
-        }.Except(playerSave.inventory);
-        objectSpawner.SpawnObjects(objectsToSpawn);
+        };
+        switch (LoadFromFileInfo.loadFromFileState)
+        {
+            case loadingType.NewGame:
+                dayTimeController.SetDefaultTime();
+                objectSpawner.SpawnObjects(objectsToSpawn);
+                break;
+            case loadingType.FromFile:
+                string playerInfoJSON;
+                string objectsInfoJSON;
+                string dayTimeSaveJSON;
+                string filepath = Path.Combine(Application.persistentDataPath, saveFilename);
+                using (StreamReader sr = new StreamReader(filepath))
+                {
+                    playerInfoJSON = sr.ReadLine();
+                    objectsInfoJSON = sr.ReadLine();
+                    dayTimeSaveJSON = sr.ReadLine();
+                }
+                PlayerSave playerSave = JsonUtility.FromJson<PlayerSave>(playerInfoJSON);
+                RoomObjectSave[] roomObjectSaves = objectsInfoJSON.ConvertStringToArray<RoomObjectSave>();
+                player.SetPlayerFromSave(playerSave);
+                for (int i = 0; i < openableObjects.Length; i++)
+                    openableObjects[i].SetObjectFromSave(roomObjectSaves[i]);
+                DayTimeSave dayTimeSave = JsonUtility.FromJson<DayTimeSave>(dayTimeSaveJSON);
+                dayTimeController.SetTimeFromSave(dayTimeSave);
+                objectsToSpawn = objectsToSpawn.Except(playerSave.inventory);
+                objectSpawner.SpawnObjects(objectsToSpawn);
+                break;
+        }
+        print("Game loaded");
     }
 }

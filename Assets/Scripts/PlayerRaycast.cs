@@ -19,32 +19,14 @@ public class PlayerRaycast : MonoBehaviour
     public Inventory PlayerInventory => inventory;
     private bool isPressed => (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0));
     private RaycastHit hit;
-    private float skyboxExposure = 1f;
 
-    private Camera _mainCamera;
-    private Camera mainCamera => _mainCamera is null ? _mainCamera = Camera.main ?? throw new MissingComponentException() : _mainCamera;
-
-    private void Awake()
-    {
-        StartCoroutine(DayNight());
-    }
-
-    private IEnumerator DayNight()
-    {
-        while(skyboxExposure > 0.12f)
-        {
-            skyboxExposure -= 0.001f;
-            RenderSettings.skybox.SetFloat("_Exposure", skyboxExposure);
-            yield return new WaitForSeconds(1); 
-        }
-    }
     private void Update()
     { 
         ShowInventory();
         ShowQuests();
         if (isPressed)
         {
-            Ray ray = Cursor.lockState == CursorLockMode.Locked ? new Ray(transform.position,  transform.forward) : mainCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Cursor.lockState == CursorLockMode.Locked ? new Ray(Camera.main.transform.position, Camera.main.transform.forward) : Camera.main.ScreenPointToRay(Input.mousePosition);
 
             Debug.DrawLine(ray.origin, hit.point, Color.magenta, 1);
 

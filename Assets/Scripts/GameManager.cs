@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager: MonoBehaviour
 {
@@ -14,17 +15,22 @@ public class GameManager: MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        //saveSystem.Load();
-        Invoke("Save", 5);
+        saveSystem.Load();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+            saveSystem.Save();
+        if (Input.GetKeyDown(KeyCode.F4) && saveSystem.HasSave)
+        {
+            LoadFromFileInfo.loadFromFileState = loadingType.FromFile;
+            SceneManager.LoadScene("Game");
+        }
     }
 
     public void TriggerOnItemPickup(PickableObjectType pickup)
     {
         OnItemPickup?.Invoke(pickup);
-    }
-
-    public void Save()
-    {
-        saveSystem.Save();
     }
 }

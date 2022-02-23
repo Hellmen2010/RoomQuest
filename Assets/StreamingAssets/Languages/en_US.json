@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "key": "English",
+      "value": "English"
+    },
+    {
+      "key": "Russian",
+      "value": "Russian"
+    },
+    {
+      "key": "Volume",
+      "value": "Volume"
+    },
+    {
+      "key": "Power",
+      "value": "Power"
+    },
+    {
+      "key": "Good morning! I can't forget last night, I'm looking forward to tonight, finally I'll introduce you to my parents. With love N.",
+      "value": "Good morning! I can't forget last night, I'm looking forward to tonight, finally I'll introduce you to my parents. With love N."
+    },
+    {
+      "key": "Smart House system has been blocked, enter original password",
+      "value": "Smart House system has been blocked, enter original password"
+    },
+    {
+      "key": "Create new text",
+      "value": "Create new text"
+    }
+  ]
+}

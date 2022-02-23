@@ -1,0 +1,32 @@
+﻿{
+  "items": [
+    {
+      "key": "English",
+      "value": "Английский"
+    },
+    {
+      "key": "Russian",
+      "value": "Русский"
+    },
+    {
+      "key": "Volume",
+      "value": "Громкость"
+    },
+    {
+      "key": "Power",
+      "value": "Питание"
+    },
+    {
+      "key": "Good morning! I can't forget last night, I'm looking forward to tonight, finally I'll introduce you to my parents. With love N.",
+      "value": "Доброе утро! Никак не могу забыть вчерашнюю ночь, жду с нетерпением сегодняшнeго вечера, наконец я познакомлю тебя с родителями.С любовью Н."
+    },
+    {
+      "key": "Smart House system has been blocked, enter original password",
+      "value": "Система умный дом была заблокирована, введите оригинальный пароль"
+    },
+    {
+      "key": "Create new text",
+      "value": "Создание нового текстового файла"
+    }
+  ]
+}

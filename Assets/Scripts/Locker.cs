@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Locker : Openable
+public class Locker : Openable, ILockable
 {
     [SerializeField] private FirstPersonController player;
     [SerializeField] private GameObject lockerCamera;
@@ -26,6 +26,8 @@ public class Locker : Openable
             _isFocused = value;
         }
     }
+
+    public bool IsLocked => lockerUnlocked;
 
     private void OnTriggerStay(Collider other)
     {
@@ -71,5 +73,11 @@ public class Locker : Openable
             inputPassword += symbol;
             Sound_Input.Play(); //при простом вводе
         }
+    }
+
+    public override void SetObjectFromSave(RoomObjectSave roomObjectSave)
+    {
+        base.SetObjectFromSave(roomObjectSave);
+        lockerUnlocked = roomObjectSave.isLocked;
     }
 }

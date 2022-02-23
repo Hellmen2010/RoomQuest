@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorInBathroom : Openable
+public class DoorInBathroom : Openable, ILockable
 {
     [SerializeField] GameObject closeIndicator;
     [SerializeField] GameObject openIndicator;
@@ -10,6 +10,9 @@ public class DoorInBathroom : Openable
     private AudioSource audioSource;
     private bool doorInBathroomIsOpen;
     public bool DoorInBathroomIsOpen { get { return doorInBathroomIsOpen; } }
+
+    public bool IsLocked => doorInBathroomIsOpen;
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -32,5 +35,10 @@ public class DoorInBathroom : Openable
         audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.ElectroDoor));
         closeIndicator.active = !closeIndicator.active;
         openIndicator.active = !openIndicator.active;
+    }
+    public override void SetObjectFromSave(RoomObjectSave roomObjectSave)
+    {
+        base.SetObjectFromSave(roomObjectSave);
+        doorInBathroomIsOpen = roomObjectSave.isLocked;
     }
 }

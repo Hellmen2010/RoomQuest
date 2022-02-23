@@ -6,7 +6,6 @@ public class Openable : MonoBehaviour
 {
     [SerializeField] private Animator animatorOverride;
     private Animator _animator;
-
     protected Animator animator => animatorOverride != null ? animatorOverride : _animator is null ? _animator = GetComponent<Animator>() ?? throw new MissingComponentException() : _animator;
     protected bool isOpened = false;
 

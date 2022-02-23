@@ -25,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cd2f87bc722e484692b8b3cf629b6a9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6854844
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cd2f87bc722e484692b8b3cf629b6a9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.30622864
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cd2f87bc722e484692b8b3cf629b6a9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.035227
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9cd2f87bc722e484692b8b3cf629b6a9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -98,24 +98,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cd2f87bc722e484692b8b3cf629b6a9, type: 3}
   m_PrefabInstance: {fileID: 1072485810377360690}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3927424854060181990
-MonoBehaviour:
+--- !u!65 &929207536
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 154061337750517859}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 46.761536, y: 42.96388, z: 0}
+  m_Center: {x: -0.39292648, y: -2.1460192, z: 0.5000001}
 --- !u!114 &4990544294257956284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,4 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d858fedc93e1c48a3f5394f31be7e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickup: 1
+  objectType: 1

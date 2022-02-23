@@ -2,30 +2,18 @@ using UnityEngine;
 
 public enum PickableObjectType
 {
-    Redkey, Boots, Trousers, TShirt
+    Redkey, Boots, Trousers, TShirt, Jacket
 }
 
 public class PickupItem : MonoBehaviour
 {
-    [SerializeField] private PickableObjectType pickup;
-    private Outline outline;
+    [SerializeField] private PickableObjectType objectType;
 
-    private void Awake()
-    {
-        outline = GetComponent<Outline>();
-    }
+    public PickableObjectType ObjectType => objectType;
+
     public void Pickup()
     {
-        
-        GlobalEventManager.TriggerOnItemPickup(pickup);
+        GameManager.Instance.TriggerOnItemPickup(objectType);
         Destroy(gameObject);
-    }
-    private void OnMouseOver()
-    {
-        outline.enabled = true;
-    }
-    private void OnMouseExit()
-    {
-        outline.enabled = false;
     }
 }

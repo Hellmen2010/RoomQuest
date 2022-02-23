@@ -1,17 +1,14 @@
 using Lean.Gui;
 using UnityEngine;
 
-public class DoorInRestRoom : Openable
+public class DoorInRestRoom : Openable, ILockable
 {
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private PlayerRaycast player;
     [SerializeField] private AudioStore audioStore;
     private bool restRoomDoorIsUnlocked;
     private AudioSource audioSource;
-    protected void Awake()
-    {
-        inventory = inventory.GetComponent<Inventory>();
-        audioSource = GetComponent<AudioSource>();
-    }
+
+    public bool IsLocked => restRoomDoorIsUnlocked;
 
     public override void OpenClose()
     {
@@ -20,20 +17,26 @@ public class DoorInRestRoom : Openable
             base.OpenClose();
         }
         else
-            audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.DoorLocked));
-    }
-
-    private void Update()
-    {
-        if (inventory.inventoryContent.Contains(PickableObjectType.Redkey) && restRoomDoorIsUnlocked == false)
         {
-            UnlockingDoor();
-            audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.DoorUnlocked));
+            if (player.PlayerInventory.HasItemInInventory(PickableObjectType.Redkey))
+            {
+                UnlockDoor();  
+            }
+            else
+                audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.DoorLocked));
         }
     }
 
-    private void UnlockingDoor()
+
+    private void UnlockDoor()
     {
         restRoomDoorIsUnlocked = true;
+        audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.DoorUnlocked));
+    }
+
+    public override void SetObjectFromSave(RoomObjectSave roomObjectSave)
+    {
+        base.SetObjectFromSave(roomObjectSave);
+        restRoomDoorIsUnlocked = roomObjectSave.isLocked;
     }
 }

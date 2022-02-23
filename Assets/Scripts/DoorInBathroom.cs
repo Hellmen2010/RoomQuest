@@ -28,7 +28,7 @@ public class DoorInBathroom : Openable
     }
     public void Unlocking()
     {
-        doorInBathroomIsOpen = true;
+        doorInBathroomIsOpen = !doorInBathroomIsOpen;
         audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.ElectroDoor));
         closeIndicator.active = !closeIndicator.active;
         openIndicator.active = !openIndicator.active;

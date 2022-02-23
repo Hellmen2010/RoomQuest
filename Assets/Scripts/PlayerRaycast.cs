@@ -5,9 +5,18 @@ using UnityEngine;
 
 public class PlayerRaycast : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject inventory;
+    [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject questPanel;
+
+    public void SetPlayerFromSave(PlayerSave playerSave)
+    {
+        transform.position = playerSave.position.ConvertToVector3();
+        transform.eulerAngles = playerSave.rotation.ConvertToVector3();
+        foreach (var item in playerSave.inventory)
+            inventory.AddItem(item);
+    }
+
+    public Inventory PlayerInventory => inventory;
     private bool isPressed => (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Mouse0));
     private RaycastHit hit;
     private float skyboxExposure = 1f;
@@ -17,7 +26,6 @@ public class PlayerRaycast : MonoBehaviour
 
     private void Awake()
     {
-        inventory.GetComponent<Inventory>();
         StartCoroutine(DayNight());
     }
 
@@ -73,8 +81,8 @@ public class PlayerRaycast : MonoBehaviour
 
     void ShowInventory()
     {
-        if(Input.GetKeyDown(KeyCode.I))
-            inventory.active = !inventory.active;
+        if (Input.GetKeyDown(KeyCode.I))
+            inventory.gameObject.SetActive(!inventory.gameObject.activeInHierarchy);
     }
     void ShowQuests()
     {

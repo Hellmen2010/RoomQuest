@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Clipboard : MonoBehaviour
 {
-    private Outline outline;
+    [SerializeField] GameObject note1;
+    [SerializeField] private FirstPersonController player;
 
-    private void Awake()
-    {
-        outline = GetComponent<Outline>();
-    }
     private void OnMouseOver()
     {
-        Debug.Log("HHHHIT");
-        outline.enabled = true;
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            note1.active = !note1.active;
+            player.enabled = !player.enabled;
+        }
     }
-    private void OnMouseExit()
-    {
-        outline.enabled = false;
-    }
+
 }

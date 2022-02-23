@@ -17,3 +17,9 @@ MonoBehaviour:
     image: {fileID: 21300000, guid: 9ce846b25e42b2742afa05c8210bd78e, type: 2}
   - pickups: 1
     image: {fileID: 21300000, guid: d3138a0d346df7a46a38cb566108a08f, type: 2}
+  - pickups: 2
+    image: {fileID: 21300000, guid: da20d04ca099b5f4894c3f06541f055a, type: 2}
+  - pickups: 3
+    image: {fileID: 21300000, guid: 73e4bba511cd2d84cb145fc5c9be170b, type: 2}
+  - pickups: 4
+    image: {fileID: 21300000, guid: 887f14257b5aa1947a823322aebc2cc8, type: 2}

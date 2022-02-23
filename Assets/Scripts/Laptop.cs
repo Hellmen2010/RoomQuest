@@ -29,7 +29,7 @@ public class Laptop : MonoBehaviour
             //GameData.Instance.DoorBathRoomIsOpenable = true;
             desktopPanel.SetActive(true);
             errorPanel.SetActive(false);
-            doorInBathroom.Unlocking();
+            
         }
     }
     
@@ -62,5 +62,9 @@ public class Laptop : MonoBehaviour
         laptopCamera.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         player.GetComponent<FirstPersonController>().enabled = true;
+    }
+    public void OpenDoorInBathroom()
+    {
+        doorInBathroom.Unlocking();
     }
 }

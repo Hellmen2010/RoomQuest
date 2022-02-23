@@ -10,10 +10,11 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject inventorySlotPrefab;
     [SerializeField] GameObject parentForInventorySlot;
     [SerializeField] InventoryImage inventoryImage;
-    public List<PickableObjectType> inventoryContent;
-    private void Awake()
+    private List<PickableObjectType> inventoryContent = new List<PickableObjectType>();
+
+    private void Start()
     {
-        GlobalEventManager.OnItemPickup += AddItem;
+        GameManager.Instance.OnItemPickup += AddItem;
     }
     public void AddItem(PickableObjectType pickup)
     {
@@ -21,8 +22,13 @@ public class Inventory : MonoBehaviour
         inventorySlot.GetComponentInChildren<Image>().sprite = inventoryImage.GetItemByType(pickup);
         inventoryContent.Add(pickup);
     }
+
+    public bool HasItemInInventory(PickableObjectType pickableObjectType) => inventoryContent.Contains(pickableObjectType);
+
     private void OnDestroy()
     {
-        GlobalEventManager.OnItemPickup -= AddItem;
+        GameManager.Instance.OnItemPickup -= AddItem;
     }
+
+    public PickableObjectType[] GetInventoryArray() => inventoryContent.ToArray();
 }

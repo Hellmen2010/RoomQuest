@@ -1,46 +1,53 @@
-using Lean.Gui;
+using System.Linq;
 using UnityEngine;
 
-public class DoorInRestRoom : Openable, ILockable
+public class ExitDoor : Openable, ILockable
 {
     [SerializeField] private PlayerRaycast player;
     [SerializeField] private AudioStore audioStore;
-    private bool restRoomDoorIsUnlocked;
+    public bool IsLocked => exitDoorIsLocked;
+    private bool exitDoorIsLocked;
     private AudioSource audioSource;
 
-    public bool IsLocked => restRoomDoorIsUnlocked;
-
-    void Awake()
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
+    private PickableObjectType[] requestedItems = new PickableObjectType[] 
+    {
+        PickableObjectType.Boots,
+        PickableObjectType.Trousers,
+        PickableObjectType.TShirt,
+        PickableObjectType.Jacket 
+    };
+
+
     public override void OpenClose()
     {
-        if (restRoomDoorIsUnlocked)
+        if (exitDoorIsLocked)
         {
             base.OpenClose();
         }
         else
         {
-            if (player.PlayerInventory.HasItemInInventory(PickableObjectType.Redkey))
+            if (requestedItems.SequenceEqual(player.PlayerInventory.InventoryContent))
             {
-                UnlockDoor();  
+                UnlockDoor();
+                Debug.Log("You collected all clothes");
             }
             else
                 audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.DoorLocked));
         }
     }
 
-
     private void UnlockDoor()
     {
-        restRoomDoorIsUnlocked = true;
+        exitDoorIsLocked = true;
         audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.DoorUnlocked));
     }
-
     public override void SetObjectFromSave(RoomObjectSave roomObjectSave)
     {
         base.SetObjectFromSave(roomObjectSave);
-        restRoomDoorIsUnlocked = roomObjectSave.isLocked;
+        exitDoorIsLocked = roomObjectSave.isLocked;
     }
 }

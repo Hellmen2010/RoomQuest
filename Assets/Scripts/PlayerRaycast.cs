@@ -7,6 +7,8 @@ public class PlayerRaycast : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject questPanel;
+    [SerializeField] private float rayLength;
+    public bool MenuAvaible { get; set; } = true;
 
     public void SetPlayerFromSave(PlayerSave playerSave)
     {
@@ -26,7 +28,7 @@ public class PlayerRaycast : MonoBehaviour
         ShowQuests();
         if (isPressed)
         {
-            Ray ray = Cursor.lockState == CursorLockMode.Locked ? new Ray(Camera.main.transform.position, Camera.main.transform.forward) : Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Cursor.lockState == CursorLockMode.Locked ? new Ray(Camera.main.transform.position, Camera.main.transform.forward * ) : Camera.main.ScreenPointToRay(Input.mousePosition);
 
             Debug.DrawLine(ray.origin, hit.point, Color.magenta, 1);
 

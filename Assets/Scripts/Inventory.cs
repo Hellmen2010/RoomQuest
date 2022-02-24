@@ -11,10 +11,12 @@ public class Inventory : MonoBehaviour
     [SerializeField] GameObject parentForInventorySlot;
     [SerializeField] InventoryImage inventoryImage;
     private List<PickableObjectType> inventoryContent = new List<PickableObjectType>();
+    public List<PickableObjectType> InventoryContent { get { return inventoryContent; } }
 
     private void Start()
     {
         GameManager.Instance.OnItemPickup += AddItem;
+        gameObject.SetActive(false);
     }
     public void AddItem(PickableObjectType pickup)
     {
@@ -24,6 +26,7 @@ public class Inventory : MonoBehaviour
     }
 
     public bool HasItemInInventory(PickableObjectType pickableObjectType) => inventoryContent.Contains(pickableObjectType);
+    
 
     private void OnDestroy()
     {

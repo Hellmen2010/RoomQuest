@@ -11,6 +11,7 @@ public class Locker : Openable, ILockable
     [SerializeField] private AudioSource Sound_Unlock, Sound_Reset, Sound_Input;
     [SerializeField] private string password = "6384", inputPassword = string.Empty;
     private bool lockerUnlocked = false;
+    PlayerRaycast playerRaycast;
     public UnityEvent onUnlock;
 
     private bool _isFocused = false;
@@ -27,19 +28,33 @@ public class Locker : Openable, ILockable
         }
     }
 
+    private void Start()
+    {
+        playerRaycast = player.GetComponent<PlayerRaycast>();
+    }
+
     public bool IsLocked => lockerUnlocked;
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E) && !lockerUnlocked) isFocused = !isFocused;
-        if (Input.GetKeyUp(KeyCode.Escape)) isFocused = false;
+        if (isFocused && Input.GetKeyUp(KeyCode.Escape))
+        {
+            isFocused = false;
+            playerRaycast.MenuAvaible = true;
+        }
     }
 
     public override void OpenClose()
     {
-        if (lockerUnlocked) {
+        if (lockerUnlocked)
+        {
             isFocused = false;
             base.OpenClose();
+        }
+        else
+        {
+            playerRaycast.MenuAvaible = isFocused;
+            isFocused = !isFocused;
         }
     }
 

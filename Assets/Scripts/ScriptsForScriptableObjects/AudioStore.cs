@@ -17,7 +17,7 @@ public class AudioStore : ScriptableObject
 
 public enum AudioType
 {
-    DoorLocked, Pc_on, Pc_off, Cat_meow, DoorUnlocked, ElectroDoor
+    DoorLocked, Pc_on, Pc_off, Cat_meow, DoorUnlocked, ElectroDoor, error, ah_fuck
 }
 
 [Serializable]

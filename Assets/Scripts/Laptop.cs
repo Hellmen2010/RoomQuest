@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Audio;
+using System.Linq;
 
 [RequireComponent(typeof(AudioSource))]
 public class Laptop : MonoBehaviour
@@ -16,6 +17,7 @@ public class Laptop : MonoBehaviour
     [SerializeField] private AudioStore audioStore;
     [SerializeField] private DoorInBathroom doorInBathroom;
     private AudioSource audioSource;
+    private string[] passwordToUnlock = new string[] {"50 cent", "50_cent", "50 Cent", "50cent", "50CENT" , "50 CENT", "50_CENT"};
 
     private void Awake()
     {
@@ -24,12 +26,15 @@ public class Laptop : MonoBehaviour
 
     private void Check()
     {
-        if (password.text == "password" )
+        if (passwordToUnlock.Contains(password.text))
         {
-            //GameData.Instance.DoorBathRoomIsOpenable = true;
             desktopPanel.SetActive(true);
             errorPanel.SetActive(false);
-            
+        }
+        else
+        {
+            password.text = string.Empty;
+            audioSource.PlayOneShot(audioStore.GetAudioClipByType(AudioType.error));
         }
     }
     

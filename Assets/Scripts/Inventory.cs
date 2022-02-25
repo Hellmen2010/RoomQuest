@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private enum spritesForInventory { }
 
-    [SerializeField] GameObject inventorySlotPrefab;
+    [SerializeField] InventorySlotConstructor inventorySlotPrefab;
     [SerializeField] GameObject parentForInventorySlot;
     [SerializeField] InventoryImage inventoryImage;
     private List<PickableObjectType> inventoryContent = new List<PickableObjectType>();
@@ -20,8 +20,8 @@ public class Inventory : MonoBehaviour
     }
     public void AddItem(PickableObjectType pickup)
     {
-        GameObject inventorySlot = Instantiate(inventorySlotPrefab, parentForInventorySlot.transform);
-        inventorySlot.GetComponentInChildren<Image>().sprite = inventoryImage.GetItemByType(pickup);
+        InventorySlotConstructor inventorySlot = Instantiate(inventorySlotPrefab, parentForInventorySlot.transform);
+        inventorySlot.ConstructInventoryItem(pickup);
         inventoryContent.Add(pickup);
     }
 

@@ -31,6 +31,58 @@
     {
       "key": "Door in bathroom",
       "value": "Door in bathroom"
+    },
+    {
+      "key": "My favorite musician",
+      "value": "My favorite musician"
+    },
+    {
+      "key": "New Game",
+      "value": "New Game"
+    },
+    {
+      "key": "Continue",
+      "value": "Continue"
+    },
+    {
+      "key": "Options",
+      "value": "Options"
+    },
+    {
+      "key": "Main Menu",
+      "value": "Main Menu"
+    },
+    {
+      "key": "Back",
+      "value": "Back"
+    },
+    {
+      "key": "THE END.",
+      "value": "THE END."
+    },
+    {
+      "key": "trousers",
+      "value": "trousers"
+    },
+    {
+      "key": "t-shirt",
+      "value": "t-shirt"
+    },
+    {
+      "key": "boots",
+      "value": "boots"
+    },
+    {
+      "key": "jacket",
+      "value": "jacket"
+    },
+    {
+      "key": "Main Quest",
+      "value": "Main Quest"
+    },
+    {
+      "key": "find this clothes:",
+      "value": "find this clothes:"
     }
   ]
 }

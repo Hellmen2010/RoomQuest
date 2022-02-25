@@ -31,6 +31,58 @@
     {
       "key": "Door in bathroom",
       "value": "Дверь в ванную"
+    },
+    {
+      "key": "My favorite musician",
+      "value": "Мой любимый музыкальный исполнитель"
+    },
+    {
+      "key": "New Game",
+      "value": "Новая игра"
+    },
+    {
+      "key": "Continue",
+      "value": "Продолжить"
+    },
+    {
+      "key": "Options",
+      "value": "Настройки"
+    },
+    {
+      "key": "Main Menu",
+      "value": "Главное меню"
+    },
+    {
+      "key": "Back",
+      "value": "Назад"
+    },
+    {
+      "key": "THE END.",
+      "value": "КОНЕЦ."
+    },
+    {
+      "key": "trousers",
+      "value": "штаны"
+    },
+    {
+      "key": "t-shirt",
+      "value": "майка"
+    },
+    {
+      "key": "boots",
+      "value": "ботинки"
+    },
+    {
+      "key": "jacket",
+      "value": "куртка"
+    },
+    {
+      "key": "Main Quest",
+      "value": "Главный квест"
+    },
+    {
+      "key": "find this clothes:",
+      "value": "найди эти вещи:"
     }
   ]
 }

@@ -10,6 +10,7 @@ public class Locker : Openable, ILockable
     [SerializeField] private GameObject lockerCamera;
     [SerializeField] private AudioSource Sound_Unlock, Sound_Reset, Sound_Input;
     [SerializeField] private string password = "6384", inputPassword = string.Empty;
+    [SerializeField] private Collider lockerCollider;
     private bool lockerUnlocked = false;
     PlayerRaycast playerRaycast;
     public UnityEvent onUnlock;
@@ -46,16 +47,13 @@ public class Locker : Openable, ILockable
 
     public override void OpenClose()
     {
-        if (lockerUnlocked)
+        if (!lockerUnlocked)
         {
-            isFocused = false;
-            base.OpenClose();
-        }
-        else
-        {
+            lockerCollider.isTrigger = true;
             playerRaycast.MenuAvaible = isFocused;
             isFocused = !isFocused;
         }
+            
     }
 
     public void PasswordInput_Clear(bool playSound, AudioSource source)
@@ -76,9 +74,12 @@ public class Locker : Openable, ILockable
     {
 
         if (inputPassword + symbol == password) { 
-            onUnlock.Invoke(); // add anim to inspector
+            onUnlock.Invoke();
             PasswordInput_Clear(true, Sound_Unlock);
             lockerUnlocked = true;
+            base.OpenClose();
+            isFocused = false;
+            lockerCollider.isTrigger = true;
         }
         else if (inputPassword.Length + 1 == password.Length) {
             PasswordInput_Clear(true, Sound_Reset);
@@ -86,7 +87,7 @@ public class Locker : Openable, ILockable
         else
         {
             inputPassword += symbol;
-            Sound_Input.Play(); //при простом вводе
+            Sound_Input.Play();
         }
     }
 

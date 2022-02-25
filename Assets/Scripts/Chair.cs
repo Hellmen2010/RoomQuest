@@ -12,17 +12,10 @@ public class Chair : MonoBehaviour
         animator = GetComponent<Animator>();
         nearTheTable = true;
     }
-    public void Move()
+
+    public virtual void Move()
     {
-        if (nearTheTable)
-        {
-            animator.SetBool("near_the_table", nearTheTable);
-            nearTheTable = false;
-        }
-        else
-        {
-            animator.SetBool("near_the_table", nearTheTable);
-            nearTheTable = true;
-        }
+        animator.SetBool("near_the_table", nearTheTable);
+        nearTheTable = !nearTheTable;
     }
 }

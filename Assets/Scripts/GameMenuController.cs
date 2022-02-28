@@ -34,7 +34,7 @@ public class GameMenuController : MonoBehaviour
     }
     public void MenuControl()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             IsPaused = !IsPaused;
         }
